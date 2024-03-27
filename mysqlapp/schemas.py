@@ -17,17 +17,18 @@ class PRIORITE(str,Enum):
     FAIBLE='FAIBLE'
 
 class TaskBase(BaseModel):
+    auteur:str=Field(examples=['username'])
     titre:str=Field(examples=['faire les courses'])
     description:str=Field(examples=['aller au supermarché MOIGNON'])
     statut:STATUT =Field(... ,description="Status de la tache (EN_COURS, EN_ATTENTE, FINI, STOPE)")
     priorite:PRIORITE=Field(..., description="Status de la tache (HAUTE,MOYENNE,HAUTE)")
-    commentaire:str=Field(examples=['Cette tache est tres fatiguante la nuit'])
+    commentaire:Optional[str]=Field(examples=['Cette tache est tres fatiguante la nuit'])
 
 
 class TaskCreate(TaskBase):
     date_echeance:date=Field(examples=['2024-03-11'])
     date_debut:date =Field(examples=['2024-03-11'])
-    date_fin:date =Field(examples=['2024-03-11'])
+    date_fin:Optional[date] =Field(examples=['2024-03-11'])
 
 class Task(TaskCreate):
     id:int
@@ -35,6 +36,7 @@ class Task(TaskCreate):
         from_orm = True
 
 class TaskUpdate(BaseModel):
+    auteur:Optional[str]=None
     titre:Optional[str]=None
     description:Optional[str]=None
     statut:Optional[STATUT]=None

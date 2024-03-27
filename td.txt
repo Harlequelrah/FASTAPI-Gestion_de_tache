@@ -1,0 +1,13 @@
+Création des migrations : Une fois la configuration terminée, vous pouvez créer une première migration en utilisant la commande suivante :
+
+arduino
+Copy code
+alembic revision --autogenerate -m "Initial migration"
+Cette commande créera un fichier de révision dans le répertoire alembic/versions avec les instructions nécessaires pour créer les tables de base de données initiales.
+
+Application des migrations : Pour appliquer les migrations et mettre à jour votre base de données, utilisez la commande suivante :
+
+bash
+Copy code
+alembic upgrade head
+Cela exécutera toutes les migrations en attente et mettra à jour votre base de données avec les derniers schémas définis.
